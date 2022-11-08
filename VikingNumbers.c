@@ -5,6 +5,7 @@
 void SpecialNumberBeforeTwenty(int value);
 void NumberBeforeVikingHundred(int value);
 void NumberBeforeVikingTwoHundred(int value);
+void NumberBeforeVikingTenHundred(int value);
 
 int main()
 {
@@ -26,12 +27,46 @@ int main()
 	{
 	  NumberBeforeVikingTwoHundred(inputValue);
 	}
+	else if (inputValue <1200)
+	{
+	  NumberBeforeVikingTenHundred(inputValue);
+	}
 	else
 	{
 		printf("something else!");
 	}
 
 	return 0;
+}
+
+void NumberBeforeVikingTenHundred(int value)
+{
+	int firstDigit;
+	int remainder;
+
+	firstDigit = value / 120;
+	remainder = value %120;
+
+
+	if(remainder ==0)
+	{
+		SpecialNumberBeforeTwenty(firstDigit);
+		printf("hundred");
+	}
+	else if(remainder <20)
+	{
+		SpecialNumberBeforeTwenty(firstDigit);
+		printf("hundred ok ");
+		SpecialNumberBeforeTwenty(remainder);
+	}
+	else
+	{
+		SpecialNumberBeforeTwenty(firstDigit);
+		printf("hundred ok ");
+		NumberBeforeVikingHundred(remainder);
+	}
+
+
 }
 
 void NumberBeforeVikingTwoHundred(int value)
@@ -46,6 +81,7 @@ void NumberBeforeVikingTwoHundred(int value)
 		NumberBeforeVikingHundred(value -120);
 	}
 }
+
 
 void NumberBeforeVikingHundred(int value)
 {
