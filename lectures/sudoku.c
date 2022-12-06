@@ -12,7 +12,7 @@
 
 typedef char value;
 typedef int cell;
-typedef value sudokuGrid[GRID_SIZE];
+typedef value sudokuGrid[GRID_SIZE+1];
 
 int hasSolution(sudokuGrid game);
 void readGame(sudokuGrid sample);
@@ -91,6 +91,30 @@ int hasSolution(sudokuGrid game)
 void readGame(sudokuGrid sample)
 {
 
+	FILE *textfile;
+	char ch;
+	int index = 0;
+
+	textfile = fopen("sample.txt", "r");
+
+	while((ch = fgetc(textfile))!=EOF)
+	{
+		putchar(ch);
+
+		sample[index] = ch;
+		index ++;
+	}
+
+
+	printf("\n let's see what is inside the array: \n");
+
+	for(int i = 0; i < GRID_SIZE+1; i++)
+	{
+		printf("%c", sample[i]);
+	}
+
+
+	fclose(textfile);
 }
 
 void showGame(sudokuGrid sample)
